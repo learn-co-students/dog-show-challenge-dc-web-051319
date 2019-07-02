@@ -8,7 +8,7 @@ class Dog {
     }
 
     static fetch(url) {
-        fetch(url)
+        return fetch(url)
             .then(response => response.json())
             .then(dogs => {
                 dogs.forEach(dog => {
@@ -21,7 +21,6 @@ class Dog {
                 });
                 return Dog.all
             })
-            .then(dogs => Adapter.render(dogs));
     }
 
     update(url, data) {
@@ -41,7 +40,7 @@ class Dog {
             body: JSON.stringify(updateData)
         };
         
-        fetch(`${url}/${this.id}`, configObject)
+        return fetch(`${url}/${this.id}`, configObject)
             .then(response => response.json())
             .then(returnedDog => {
                 this.name = returnedDog.name

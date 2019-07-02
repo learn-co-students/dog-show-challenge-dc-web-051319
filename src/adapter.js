@@ -37,11 +37,11 @@ class Adapter {
         let tableRow = document.querySelector(`#dog-${dog.id}`);
         let newDogData = this.getFormData();
         dog.update(DOGS_URL, newDogData)
-        //what happens on error?
-        // optimistic render :(
-        tableRow.children[0].innerText = newDogData.name //dog.name
-        tableRow.children[1].innerText = newDogData.breed //dog.breed
-        tableRow.children[2].innerText = newDogData.sex //dog.sex
+            .then(() => {
+                tableRow.children[0].innerText = dog.name;
+                tableRow.children[1].innerText = dog.breed;
+                tableRow.children[2].innerText = dog.sex;
+            });
     }
 
     static getFormData() {
