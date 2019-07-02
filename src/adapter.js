@@ -71,4 +71,3 @@ class Adapter {
         form.addEventListener("submit", submitHandler);
     }
 }
-
