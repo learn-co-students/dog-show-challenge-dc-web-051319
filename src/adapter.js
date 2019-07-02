@@ -24,6 +24,8 @@ class Adapter {
 
             let button = document.createElement("button");
             button.innerText = "Edit";
+            button.classList.add("margin");
+            button.classList.add("flex");
             button.addEventListener("click", this.fillForm);
             buttonContainer.appendChild(button);
 

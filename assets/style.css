@@ -26,6 +26,11 @@ form input[type="submit"] {
     color: white;
 }
 
+td {
+    text-align: center;
+    padding: 0 2.5rem 0;
+}
+
 .center {
   text-align: center;
 }
