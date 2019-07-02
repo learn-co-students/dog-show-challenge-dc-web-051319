@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     getDogs()
+    form_disabled()
 })
 
 function getDogs(){
@@ -12,10 +13,27 @@ function getTd(){
     return document.createElement('td')
 }
 
+function grab_form(){
+   return form = document.getElementById('dog-form').children
+}
+
+function form_disabled(){
+     grab_form()[0].disabled = true
+     grab_form()[1].disabled = true
+    return grab_form()[2].disabled = true
+}
+
+function form_enabled(){
+    grab_form()[0].disabled = false
+    grab_form()[1].disabled = false
+    return grab_form()[2].disabled = false
+}
+
 function createBtn(){
     let btn = document.createElement('button')
     btn.innerText = 'Edit Dog'
     btn.addEventListener('click', dogButton)
+    btn.dataset.id = ""
     return btn
 }
 
@@ -31,7 +49,8 @@ function grabDogs(dogs){
    td2.innerText = dogs.breed
    td3.innerText = dogs.sex
    td4.appendChild(createBtn())
-
+   td4.children[0].dataset.id = dogs.id
+    
     tr.dataset.id = dogs.id
 
     tr.append(td1, td2, td3, td4)
@@ -41,25 +60,36 @@ function grabDogs(dogs){
 
 function dogButton(e){
     e.preventDefault()
-    let newTr = document.getElementsByName("name")[0].value = e.target.parentElement.parentElement.children[0].innerText
-    let breed = document.getElementsByName("breed")[0].value = e.target.parentElement.parentElement.children[1].innerText
-    let sex = document.getElementsByName("sex")[0].value = e.target.parentElement.parentElement.children[2].innerText
-    let hidden = document.getElementsByName("hidden")[0].id = e.target.parentElement.parentElement.dataset.id
+    form_enabled()
+    let tr = document.querySelector(`[data-id = '${e.target.dataset.id}']`)
+    
+    grab_form()[0].value = tr.children[0].innerText
+    grab_form()[1].value = tr.children[1].innerText
+    grab_form()[2].value = tr.children[2].innerText
+    grab_form()[3].id = tr.dataset.id
     
     submit()
+    
 }
 
+
+
 function submit(){
+    
     return document.addEventListener('submit', editDog)
+    
 }
+
+
 
 function editDog(e){
     e.preventDefault()
     let form = e.target
-    let id = parseInt(e.target.children.hidden.id)
-    let name = e.target.children.name.value 
-    let breed = e.target.children.breed.value 
-    let sex = e.target.children.sex.value
+    
+    let id = parseInt(e.target.children[3].id)
+    let name = e.target.children[0].value 
+    let breed = e.target.children[1].value 
+    let sex = e.target.children[2].value
     fetch(`http://localhost:3000/dogs/${id}`,{
         method: 'PATCH',
         headers: {
@@ -77,8 +107,10 @@ function editDog(e){
        replaceData(data)
     }) 
     form.reset()
+    form_disabled()
         
 }
+
 
 function replaceData(data){
    let children = document.querySelector(`[data-id = '${data.id}']`).childNodes

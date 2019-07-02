@@ -2,7 +2,7 @@
   "dogs": [
     {
       "id": 1,
-      "name": "Rufus",
+      "name": "rufus",
       "breed": "Scottish Deerhound",
       "sex": "male"
     },
@@ -58,7 +58,7 @@
       "id": 10,
       "name": "Patches",
       "breed": "Dingo",
-      "sex": "female"
+      "sex": "male"
     },
     {
       "id": 11,
@@ -92,7 +92,7 @@
     },
     {
       "id": 16,
-      "name": "Buddy",
+      "name": "Bud",
       "breed": "Walker Hound",
       "sex": "female"
     },
