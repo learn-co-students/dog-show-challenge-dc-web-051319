@@ -18,6 +18,14 @@ th {
   font-weight: bold;
 }
 
+form input {
+    color: black;
+}
+
+form input[type="submit"] {
+    color: white;
+}
+
 .center {
   text-align: center;
 }
