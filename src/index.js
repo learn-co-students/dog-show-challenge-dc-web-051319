@@ -13,9 +13,9 @@ class Dog{
         let dogRow = document.createElement("tr");
             dogRow.dataset.dogId = this.id;
         dogRow.innerHTML += `
-        <td data-dog-name='${this.name}'>${this.name}</td>
-        <td data-dog-breed='${this.breed}'>${this.breed}</td>
-        <td data-dog-sex='${this.sex}'>${this.sex}</td>`
+        <td class="name">${this.name}</td>
+        <td class="breed">${this.breed}</td>
+        <td class="sex">${this.sex}</td>`
         let editButton = document.createElement("button");
             editButton.innerText = "Edit Dog";
             editButton.addEventListener("click",editHandler);
@@ -25,12 +25,9 @@ class Dog{
     }
 
     updateDog(parentWindow){
-        parentWindow.children[0].innerText = this.name;
-        parentWindow.children[0].dataset.dogName = `${this.name}`;
-        parentWindow.children[1].innerText = this.breed;
-        parentWindow.children[1].dataset.dogBreed = `${this.breed}`;
-        parentWindow.children[2].innerText = this.sex;
-        parentWindow.children[2].dataset.dogSex = `${this.sex}`;
+        parentWindow.querySelector("td.name").innerText = this.name;
+        parentWindow.querySelector("td.breed").innerText = this.breed;
+        parentWindow.querySelector("td.sex").innerText = this.sex;
     }
 }
 
@@ -60,9 +57,9 @@ function initForm(){
 function editHandler(e){
     let form = document.getElementById("dog-form");
     form.dataset.dogid = e.currentTarget.dataset.dogId;
-    form.name.value = e.currentTarget.parentElement.children[0].innerText;
-    form.breed.value = e.currentTarget.parentElement.children[1].innerText;
-    form.sex.value = e.currentTarget.parentElement.children[2].innerText;
+    form.name.value = e.currentTarget.parentElement.querySelector("td.name").innerText;
+    form.breed.value = e.currentTarget.parentElement.querySelector("td.breed").innerText;
+    form.sex.value = e.currentTarget.parentElement.querySelector("td.sex").innerText;
     form.name.disabled = false;
     form.breed.disabled = false;
     form.sex.disabled = false;
