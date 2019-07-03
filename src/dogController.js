@@ -5,14 +5,14 @@ export class DogController {
   static init() {
     Adapter.getDogs().then(DogController.renderDogs)
 
-    const form = document.getElementById('dog-form')
+    const form = DogController.dogForm()
     form.addEventListener('submit', DogController.handleEditSubmit)
   }
 
   static renderDogs(dogs) {
     //dogs.forEach(DogController.renderDog)
     dogs.forEach(dog => {
-      const table = document.getElementById('table-body')
+      const table = DogController.dogTable()
       table.append(new Dog(dog).dogRow())
       const edit = table.querySelector(`tr[data-id="${dog.id}"] button`)
       edit.addEventListener('click', DogController.handleEditClick)
@@ -37,12 +37,12 @@ export class DogController {
   }
 
   static populateForm(dog) {
-    const form = document.getElementById('dog-form')
+    const form = DogController.dogForm()
     form.dataset.dogId = dog.id
     form.children[0].value = dog.name
     form.children[1].value = dog.breed
     form.children[2].value = dog.sex
-    const submit = form.querySelector('input[type="submit"]')
+    const submit = DogController.submitButton()
     submit.disabled = false;
 
   }
@@ -60,16 +60,21 @@ export class DogController {
 
     e.target.reset()
     e.target.dataset.dogId = ''
-    const submit = document.querySelector('input[type="submit"]')
+
+    const submit = DogController.submitButton()
     submit.disabled = true;
   }
 
-  dogTable() {
+  static dogTable() {
     return document.getElementById('table-body')
   }
 
-  dogForm() {
+  static dogForm() {
     return document.getElementById('dog-form')
+  }
+
+  static submitButton() {
+    return DogController.dogForm().querySelector('input[type="submit"]')
   }
 
 }
