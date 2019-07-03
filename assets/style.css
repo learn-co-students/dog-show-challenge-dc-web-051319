@@ -47,3 +47,22 @@ th {
   border-width: 1px;
   border-color: grey;
 }
+
+button, input[type="submit"] {
+  cursor: pointer;
+}
+button {
+  width: 100%;
+}
+
+tr[data-id] {
+  transition: background-color 0.5s ease-out;
+}
+
+tr[data-id].flash {
+  background-color: powderblue;
+}
+
+td {
+  padding: 8px 43px;
+}
