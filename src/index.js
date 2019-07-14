@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log("dom content loaded, bitches")
+    getNewForm().addEventListener("submit", actuallyCreateDog)
     getDogs();
 
 })
@@ -59,13 +60,9 @@ function getNewForm() {
     return document.getElementById("new-dog-form");
 }
 
-function createDog(event) {
-    event.preventDefault();
-    let form = getNewForm();
-    form.addEventListener("submit", actuallyCreateDog)
-}
 
 function actuallyCreateDog(event) {
+    event.preventDefault()
     let nameField = document.getElementById("new-name-field").value;
     let breedField = document.getElementById("new-breed-field").value;
     let sexField = document.getElementById("new-sex-field").value;
@@ -83,7 +80,7 @@ function actuallyCreateDog(event) {
           likes: 0
         })
       })
-      .then(resp => resp.json())
+      .then(resp =>  resp.json())
       .then(data => renderDog(data))
     
       getNewForm().reset();
