@@ -16,12 +16,24 @@
       <h1 class='padding margin'>Westminster Kennel Club Dog Show</h1>
 
       <div class="margin flex">
+          <h4 class='center'>Create New Dog</h4>
+          <form id='new-dog-form' class="padding margin border-round border-grey">
+            <input type="hidden" name="dogId" value="">
+            <input id="new-name-field" type="text" name="name" placeholder="new dog's name" value="" />
+            <input id="new-breed-field" type="text" name="breed" placeholder="new dog's breed" value="" />
+            <input id="new-sex-field" type="text" name="sex" placeholder="new dog's sex" value="" />
+            <input id="new-submit-btn" type="submit" value="Submit" />
+          </form>
+      </div>
+
+      <div class="margin flex">
         <h4 class='center'>Edit Existing Dog</h4>
         <form id='dog-form' class="padding margin border-round border-grey">
-          <input type="text" name="name" placeholder="dog's name" value="" />
-          <input type="text" name="breed" placeholder="dog's breed" value="" />
-          <input type="text" name="sex" placeholder="dog's sex" value="" />
-          <input type="submit" value="Submit" />
+          <input type="hidden" name="dogId" value="">
+          <input id="name-field" type="text" name="name" placeholder="dog's name" value="" />
+          <input id="breed-field" type="text" name="breed" placeholder="dog's breed" value="" />
+          <input id="sex-field" type="text" name="sex" placeholder="dog's sex" value="" />
+          <input id="submit-btn" type="submit" value="Submit" />
         </form>
       </div>
 
@@ -33,10 +45,13 @@
               <th class='padding center'>Name</th>
               <th class='padding center'>Breed</th>
               <th class='padding center'>Sex</th>
+              <th class='padding center'>Likes</th>
+              <th class='padding center'>Like Dog</th>
               <th class='padding center'>Edit Dog</th>
+              <th class='padding center'>Delete Dog</th>
             </tr>
           </thead>
-          <tbody id="table-body">
+          <tbody id="table-body" class="center">
           </tbody>
         </table>
       </div>
